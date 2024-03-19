@@ -1,0 +1,35 @@
+<clickhouse>
+    <users>
+        <default remove="remove">
+        </default>
+
+        <admin>
+            <profile>default</profile>
+            <networks>
+            <ip>::/0</ip>
+            </networks>
+            <password>admin</password>
+            <quota>default</quota>
+            <access_management>1</access_management>
+            <grants>
+                <query>GRANT SHOW ON *.*</query>
+                <query>REVOKE SHOW ON system.*</query>
+                <query>GRANT CREATE ON *.* WITH GRANT OPTION</query>
+            </grants>
+        </admin>
+        <admin1>
+            <profile>default</profile>
+            <networks>
+            <ip>::/0</ip>
+            </networks>
+            <password>admin1</password>
+            <quota>default</quota>
+            <access_management>1</access_management>
+            <grants>
+                <query>GRANT SHOW ON *.*</query>
+                <query>REVOKE SHOW ON system.*</query>
+                <query>GRANT CREATE ON *.* WITH GRANT OPTION</query>
+            </grants>
+        </admin1>
+    </users>
+</clickhouse>

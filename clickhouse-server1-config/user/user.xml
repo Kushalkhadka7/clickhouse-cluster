@@ -1,0 +1,56 @@
+<clickhouse>
+    <roles>
+        <admin_role>
+            <grants>
+                <query>GRANT ALL ON *.*</query>
+                <query>GRANT ALL ON *.* WITH GRANT OPTION</query>
+            </grants>
+            <access_management>1</access_management>
+            <named_collection_control>1</named_collection_control>
+            <show_named_collections>1</show_named_collections>
+            <show_named_collections_secrets>1</show_named_collections_secrets>
+        </admin_role>
+
+        <developer_role>
+            <grants>
+                <query>GRANT SHOW ON *.* </query>
+                <query>GRANT ALTER ON *.* </query>
+                <query>GRANT CREATE ON *.* </query>
+                <query>GRANT SELECT ON *.* </query>
+            </grants>
+        </developer_role>
+
+        <manager_role>
+            <grants>
+                <query>GRANT SHOW ON *.*</query>
+                <query>GRANT SELECT ON *.* </query>
+            </grants>
+        </manager_role>
+    </roles>
+
+    <users>
+        <default remove="remove">
+        </default>
+
+        <admin>
+            <password>admin</password>
+            <grants>
+                <query>GRANT admin_role</query>
+            </grants>
+        </admin>
+
+        <developer>
+            <password>developer</password>
+            <grants>
+                <query>GRANT developer_role</query>
+            </grants>
+        </developer>
+
+        <manager>
+            <password>manager</password>
+            <grants>
+                <query>GRANT manager_role</query>
+            </grants>
+        </manager>
+    </users>
+</clickhouse>
