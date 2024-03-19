@@ -1,0 +1,140 @@
+version: "3"
+
+services:
+  clickhouse-server1:
+    container_name: clickhouse-server1
+    image: clickhouse/clickhouse-server:24.2.2-alpine
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - clickhouse-server1-data:/var/lib/clickhouse
+      - clickhouse-server1-config:/etc/clickhouse-server
+      - ./clickhouse-server1-config/user/:/etc/clickhouse-server/users.d/
+      - ./clickhouse-server1-config/server/:/etc/clickhouse-server/config.d/
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - clickhouse-network
+
+  clikhouse-server2:
+    container_name: clickhouse-server2
+    image: clickhouse/clickhouse-server:24.2.2-alpine
+    ports:
+      - "8124:8123"
+      - "9001:9000"
+    volumes:
+      - clickhouse-server2-data:/var/lib/clickhouse
+      - clickhouse-server2-config:/etc/clickhouse-server
+      - ./clickhouse-server2-config/user/:/etc/clickhouse-server/users.d/
+      - ./clickhouse-server2-config/server/:/etc/clickhouse-server/config.d/
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - clickhouse-network
+
+  clikhouse-server3:
+    container_name: clickhouse-server3
+    image: clickhouse/clickhouse-server:24.2.2-alpine
+    ports:
+      - "8125:8123"
+      - "9002:9000"
+    volumes:
+      - clickhouse-server3-data:/var/lib/clickhouse
+      - clickhouse-server3-config:/etc/clickhouse-server
+      - ./clickhouse-server3-config/user/:/etc/clickhouse-server/users.d/
+      - ./clickhouse-server3-config/server/:/etc/clickhouse-server/config.d/
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - clickhouse-network
+
+  clikhouse-server4:
+    container_name: clickhouse-server4
+    image: clickhouse/clickhouse-server:24.2.2-alpine
+    ports:
+      - "8126:8123"
+      - "9003:9000"
+    volumes:
+      - clickhouse-server4-data:/var/lib/clickhouse
+      - clickhouse-server4-config:/etc/clickhouse-server
+      - ./clickhouse-server4-config/user/:/etc/clickhouse-server/users.d/
+      - ./clickhouse-server4-config/server/:/etc/clickhouse-server/config.d/
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - clickhouse-network
+
+  clikhouse-keeper1:
+    container_name: clickhouse-keeper1
+    image: clickhouse/clickhouse-keeper:23
+    ports:
+      - "8127:8123"
+      - "9004:9000"
+      - "9181:9181"
+      - "9234:9234"
+      - "9444:9444"
+    volumes:
+      - clickhouse-keeper1-data:/var/lib/clickhouse
+      - clickhouse-keeper1-config:/etc/clickhouse-server
+      - ./clickhouse-keeper1-config/:/etc/clickhouse-keeper/
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - clickhouse-network
+
+  clikhouse-keeper2:
+    container_name: clickhouse-keeper2
+    image: clickhouse/clickhouse-keeper:23
+    ports:
+      - "8128:8123"
+      - "9005:9000"
+      - "9182:9181"
+      - "9235:9234"
+      - "9445:9444"
+    volumes:
+      - clickhouse-keeper2-data:/var/lib/clickhouse
+      - clickhouse-keeper2-config:/etc/clickhouse-server
+      - ./clickhouse-keeper2-config/:/etc/clickhouse-keeper/
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - clickhouse-network
+
+  clikhouse-keeper3:
+    container_name: clickhouse-keeper3
+    image: clickhouse/clickhouse-keeper:23
+    ports:
+      - "8129:8123"
+      - "9006:9000"
+      - "9183:9181"
+      - "9236:9234"
+      - "9446:9444"
+    volumes:
+      - clickhouse-keeper3-data:/var/lib/clickhouse
+      - clickhouse-keeper3-config:/etc/clickhouse-server
+      - ./clickhouse-keeper3-config/:/etc/clickhouse-keeper/
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - clickhouse-network
+
+networks:
+  clickhouse-network:
+    driver: bridge
+
+volumes:
+  clickhouse-server1-data:
+  clickhouse-server1-config:
+  clickhouse-server2-data:
+  clickhouse-server2-config:
+  clickhouse-server3-data:
+  clickhouse-server3-config:
+  clickhouse-server4-data:
+  clickhouse-server4-config:
+  clickhouse-keeper1-data:
+  clickhouse-keeper1-config:
+  clickhouse-keeper2-data:
+  clickhouse-keeper2-config:
+  clickhouse-keeper3-data:
+  clickhouse-keeper3-config:
