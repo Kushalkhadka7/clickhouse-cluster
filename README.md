@@ -78,6 +78,7 @@ make stop-clickhouse-cluster
 - This cluster will run with 4 clickhouse server and 3 clickhouse keeper server. However, further improvements can be done on this.
 - SSL/TLS can be used to secure the communication between the servers, as well as for the communication between user and the servers.
 - Storage encryption can be done for data security.
+- Proper logging and monitoring can be enabled for the clusters.
 
 ## Further readings
 
